@@ -1101,6 +1101,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">C11</span>
     <span class="defect-name">Duration: No Duration / Duration Mismatch</span>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -1108,10 +1109,25 @@
     <strong>Duration Mismatch:</strong> The runtime shown is clearly incorrect.</p>
     <div class="rule-block purple">
       <div class="block-label purple">where to find it — two possible locations</div>
-      1. Text below the description: e.g., <em>"2h 34 min"</em><br>
-      2. Timestamp on the player/thumbnail: e.g., <em>"2:23:09"</em> in the corner of the video frame.<br><br>
-      If either location shows the duration, the defect is not applicable.
+      1. <strong>Text below the description</strong>: e.g., <em>"2h 34 min"</em> — this applies to ALL card types.<br>
+      2. <strong>Timestamp on the embedded player/thumbnail</strong>: e.g., <em>"1:35:47"</em> in the corner of the video frame — only present when the card has a direct embedded player.
     </div>
+    <div class="rule-block warn">
+      <div class="block-label warn">important — two card types behave differently</div>
+      <strong>Card with embedded player:</strong> Duration may appear as a timestamp on the video frame. If it's there, no defect.<br><br>
+      <strong>Card with external links only</strong> ("Şimdi İzle" / "Watch online" button): There is no video frame, so no timestamp. Duration <strong>must</strong> appear as text below the description. If it doesn't → mark <em>No Duration</em>.
+    </div>
+    <div class="example-row">
+      <div class="ex-box bad">
+        <div class="ex-label bad">✗ Mark defect</div>
+        Card shows "Şimdi İzle" button (external links only). No "2h 34 min" text anywhere below the description. → Mark No Duration.
+      </div>
+      <div class="ex-box good">
+        <div class="ex-label good">✓ No defect</div>
+        Card has embedded player with "1:35:47" timestamp visible on the video frame. OR card has "2h 34 min" written below the description.
+      </div>
+    </div>
+    <div class="karina-box">Karina (via Elif's question): Even if the card type uses external links and can't show duration in a player timestamp, the duration requirement still applies. Mark "No Duration" if it's absent — regardless of which player format is used.</div>
   </div>
 </div>
 
