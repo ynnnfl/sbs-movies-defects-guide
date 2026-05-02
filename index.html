@@ -216,6 +216,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G2</span>
     <span class="defect-name">Empty Answer</span>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -227,13 +228,15 @@
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
-        Query: "Inception" → Response: a plain paragraph about the film. No card.
+        Query: "Inception" → Response: a plain paragraph about the film. No card.<br><br>
+        Mark: <strong>Empty Answer only.</strong> Do not also mark No Pictures, No Genre, etc.
       </div>
       <div class="ex-box good">
         <div class="ex-label good">✓ No defect</div>
-        Query: "Inception" → Response includes a proper Movie Card.
+        Query: "Inception" → Response includes a proper Movie Card. Evaluate its individual elements normally.
       </div>
     </div>
+    <div class="escalate-box">Q13 still open: When "Empty Answer" is marked, should editors also mark individual element defects (No Pictures, No Genre, No Review Score, etc.)? Or does "Empty Answer" cover all missing elements and element defects should be skipped? Awaiting product team.</div>
   </div>
 </div>
 
@@ -591,7 +594,8 @@
 
 <div class="rule-block green" style="margin-bottom:20px">
   <div class="block-label green">how element defects work</div>
-  These defects apply to individual elements within each Movie Card. Check every card in the response — if one card has a missing element, mark it even if the other cards are fine.
+  These defects apply to individual elements within each Movie Card. Check every card in the response — if one card has a missing element, mark it even if the other cards are fine.<br><br>
+  <strong>Note:</strong> Whether element defects should also be marked when "Empty Answer" (G2) applies is currently awaiting clarification from the product team — see Q13.
 </div>
 
 <div class="defect-card" id="e1">
