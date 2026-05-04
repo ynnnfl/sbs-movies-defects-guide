@@ -131,7 +131,7 @@
       <a class="toc-link" href="#g11">Movies 18+</a>
       <a class="toc-link" href="#g12">Repeat Selections</a>
       <a class="toc-link" href="#g13">Irrelevant URLs</a>
-      <a class="toc-link" href="#g14">Viewing Params</a>
+      <a class="toc-link" href="#g14">Viewing Parameters</a>
       <a class="toc-link" href="#g15">Missed Dialog</a>
       <a class="toc-link" href="#g16">Language Issues</a>
     </div>
@@ -288,7 +288,7 @@
         Query: "The Dark Knight" → All 3 Nolan Batman films shown.
       </div>
     </div>
-    <div class="escalate-box">Q9 still open: Does the defect require BOTH sequels AND prequels to be missing, or is ONE missing title sufficient? Awaiting product team.</div>
+    <div class="escalate-box">Q9 still open: (a) Does the defect require BOTH sequels AND prequels to be missing, or is ONE missing title sufficient? (b) If sequels/prequels are mentioned in the text of the response but not shown as separate Movie Cards — is that still a defect? Or is a textual mention sufficient? Awaiting product team.</div>
   </div>
 </div>
 
@@ -296,6 +296,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G5</span>
     <span class="defect-name">The Loss of Versions of Identical Films</span>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -315,6 +316,7 @@
       </div>
     </div>
     <div class="karina-box">Karina: do a quick Wikipedia check. Mark if the most obvious/well-known versions are missing. No need to dig deep.</div>
+    <div class="escalate-box">Q (versions as text vs card) still open: If the different versions are mentioned in the response text but not shown as separate Movie Cards — is that still a defect? Or is a textual mention sufficient? Awaiting product team.</div>
   </div>
 </div>
 
@@ -423,7 +425,7 @@
         Query: "Action film recommendations" → Mix of classics and modern titles (e.g., John Wick, Top Gun: Maverick).
       </div>
     </div>
-    <div class="escalate-box">Q3 still open: Is there a minimum review score threshold for recommended films? Awaiting product team.</div>
+    <div class="escalate-box">Q3 still open: (a) Is there a minimum review score threshold for recommended films? (b) For queries that inherently invite classic/timeless recommendations — e.g., "movies that changed your perspective on life" (hayata bakış açınızı değiştiren filmler) — is it acceptable if the list consists mostly of well-known classics (Forrest Gump, The Matrix) with no recent titles? Or does the "fresh" rule still apply regardless of query type? Awaiting product team.</div>
   </div>
 </div>
 
@@ -530,7 +532,7 @@
       User asks for director's cut → only theatrical version linked<br>
       User asks for Turkish dub → only original-language version available
     </div>
-    <div class="escalate-box">Q1 still open: If the requested parameter (e.g., Turkish dub) provably doesn't exist anywhere online, should we still mark this defect — or is an honest model response stating unavailability acceptable? Awaiting product team.</div>
+    <div class="escalate-box">Q1 still open: (a) If the requested parameter (e.g., Turkish dub) provably doesn't exist anywhere online, should we still mark this defect — or is an honest model response stating unavailability acceptable? (b) Does the editor need to do external research to verify whether the requested parameter (dub, subtitle, version) actually exists online before deciding? Awaiting product team.</div>
   </div>
 </div>
 
@@ -563,7 +565,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G16</span>
     <span class="defect-name">Language Issues</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -583,6 +585,7 @@
       </div>
     </div>
     <div class="karina-box">Genre metadata in Turkish (e.g., "çizgi filmi, aksiyon, animasyon") is NOT a language defect. Only the model-written text is evaluated for language consistency.</div>
+    <div class="escalate-box">Q (metadata language) still open: Karina indicated metadata in Turkish is acceptable — but product team has not formally confirmed this in writing. Pending official confirmation.<br><br>Q (ambiguous query language) still open: If the query is only a single word that exists in both Turkish and English — e.g., "film" — and one model responds in Turkish while the other responds in English, which language should be prioritised? How should editors handle language defects when the query language is genuinely ambiguous? Awaiting product team.</div>
   </div>
 </div>
 
@@ -824,7 +827,7 @@
   </div>
   <div class="defect-body">
     <p class="what-it-means">The age rating shown is incorrect — either clearly wrong for the film's content, or using the wrong country's rating standard.</p>
-    <div class="escalate-box">Q5 still open: When Turkey's rating differs from the film's origin country rating, which one takes priority? Awaiting product team.</div>
+    <div class="escalate-box">Q5 still open: When Turkey's rating differs from the film's origin country rating, which one takes priority? Concrete example: <em>Deadpool</em> (2016) is rated R (≈17+) in the USA but 15+ in Turkey. If the card shows "15+", is that correct or a defect? Should editors judge by the Turkish rating (what the local user encounters) or the US origin rating? And does this mean editors need to fact-check age ratings against an external source? Awaiting product team.</div>
   </div>
 </div>
 
@@ -902,10 +905,12 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E20</span>
     <span class="defect-name">Duration Mismatch</span>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
     <p class="what-it-means">The runtime is present but clearly incorrect. Do a quick check if you suspect it's wrong.</p>
+    <div class="escalate-box">Q (duration fact-check) still open: Does marking "Duration Mismatch" require editors to fact-check the runtime against an external source? Or should editors only mark it when the duration is obviously wrong (e.g., a 2-hour film listed as 10 minutes)? Awaiting product team.</div>
   </div>
 </div>
 
