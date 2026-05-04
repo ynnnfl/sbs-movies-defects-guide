@@ -131,7 +131,7 @@
       <a class="toc-link" href="#g11">Movies 18+</a>
       <a class="toc-link" href="#g12">Repeat Selections</a>
       <a class="toc-link" href="#g13">Irrelevant URLs</a>
-      <a class="toc-link" href="#g14">Viewing Parameters</a>
+      <a class="toc-link" href="#g14">Viewing Params</a>
       <a class="toc-link" href="#g15">Missed Dialog</a>
       <a class="toc-link" href="#g16">Language Issues</a>
     </div>
@@ -437,6 +437,11 @@
   </div>
   <div class="defect-body">
     <p class="what-it-means">The <strong>type</strong> of response doesn't match what the user asked for — the card content may be correct, but the format or intent is wrong.</p>
+    <div class="rule-block purple">
+      <div class="block-label purple">key distinction — G10 vs G14</div>
+      <strong>G10 (Irrelevant Responses):</strong> The response is completely off-target — wrong type, wrong intent, doesn't address what the user asked at all.<br><br>
+      <strong>G14 (Viewing Parameters Not Met):</strong> The response is correct and relevant, but something specific is missing or doesn't match — e.g., correct film but wrong subtitle language, correct film but wrong version, fewer results than requested.
+    </div>
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
@@ -526,6 +531,11 @@
   </div>
   <div class="defect-body">
     <p class="what-it-means">The user asks to watch something with <strong>specific attributes</strong> (a particular dub language, subtitles, or version). The model finds the correct film but fails to provide the requested version or language.</p>
+    <div class="rule-block purple">
+      <div class="block-label purple">key distinction — G14 vs G10</div>
+      <strong>G14 (Viewing Parameters Not Met):</strong> The response is correct and relevant, but something specific is missing or doesn't match — e.g., correct film but wrong subtitle language, correct film but wrong version, fewer results than requested.<br><br>
+      <strong>G10 (Irrelevant Responses):</strong> The response is completely off-target — wrong type, wrong intent, doesn't address what the user asked at all.
+    </div>
     <div class="rule-block">
       <div class="block-label red">examples</div>
       User asks for English subtitles → links provided but none have English subs<br>
@@ -565,7 +575,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G16</span>
     <span class="defect-name">Language Issues</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -584,8 +594,11 @@
         Query: "spy family bond" (English) → Description in English, but year/genre shows "2022 · çizgi filmi, aksiyon" in Turkish. Metadata language is fine.
       </div>
     </div>
-    <div class="karina-box">Genre metadata in Turkish (e.g., "çizgi filmi, aksiyon, animasyon") is NOT a language defect. Only the model-written text is evaluated for language consistency.</div>
-    <div class="escalate-box">Q (metadata language) still open: Karina indicated metadata in Turkish is acceptable — but product team has not formally confirmed this in writing. Pending official confirmation.<br><br>Q (ambiguous query language) still open: If the query is only a single word that exists in both Turkish and English — e.g., "film" — and one model responds in Turkish while the other responds in English, which language should be prioritised? How should editors handle language defects when the query language is genuinely ambiguous? Awaiting product team.</div>
+    <div class="rule-block purple">
+      <div class="block-label purple">editor tip — what counts as "model-written text"</div>
+      Metadata fields pulled from the database (year, genre, age rating) may appear in Turkish even when the query is in another language. This is the same principle as Turkish prices and labels in the E-com task. Only the text the model itself generates (introduction, description) should be evaluated for language consistency.
+    </div>
+    <div class="escalate-box">Q (metadata language) still open: Is it acceptable for card metadata fields (year, genre, age rating label) to appear in Turkish when the user's query is in another language? And for the ambiguous query case: if the query is only a single word that exists in both Turkish and English — e.g., "film" — and one model responds in Turkish while the other responds in English, which language should be prioritised? Awaiting product team.</div>
   </div>
 </div>
 
