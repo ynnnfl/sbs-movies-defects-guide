@@ -168,6 +168,12 @@
       <a class="toc-link" href="#o1">Other</a>
     </div>
   </div>
+  <div class="toc-section" style="margin-top:10px">
+    <div class="toc-section-label">Quick Reference</div>
+    <div class="toc-links">
+      <a class="toc-link" href="#fc">What to Fact-Check</a>
+    </div>
+  </div>
 </div>
 
 <div class="controls">
@@ -268,7 +274,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G4</span>
     <span class="defect-name">Loss of Sequels/Prequels</span>
-    <div class="defect-tags"><span class="tag tag-updated">UPDATED 30 APR</span></div>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 30 APR</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -277,21 +283,21 @@
       <div class="block-label warn">scope — important</div>
       Does NOT apply to Selections/Recommendations. If the user asks "best action movies" and The Dark Knight appears without its sequels, that is NOT this defect.
     </div>
-    <div class="rule-block purple">
-      <div class="block-label purple">editor tip</div>
-      Mark if either a sequel OR a prequel is missing — not both need to be absent.
+    <div class="rule-block warn">
+      <div class="block-label warn">when to mark</div>
+      If the film has both sequels AND prequels, both must be present. Mark this defect only when the response is missing at least one that should be there.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
-        Query: "The Dark Knight" → Only The Dark Knight card shown. Missing: Batman Begins + The Dark Knight Rises.
+        Query: "The Dark Knight" → Only The Dark Knight card shown. Missing: Batman Begins (prequel) + The Dark Knight Rises (sequel).
       </div>
       <div class="ex-box good">
         <div class="ex-label good">✓ No defect</div>
         Query: "The Dark Knight" → All 3 Nolan Batman films shown.
       </div>
     </div>
-    <div class="escalate-box">Q9 still open: (a) Does the defect require BOTH sequels AND prequels to be missing, or is ONE missing title sufficient? (b) If sequels/prequels are mentioned in the text of the response but not shown as separate Movie Cards — is that still a defect? Or is a textual mention sufficient? Awaiting product team.</div>
+    <div class="escalate-box">Q9 still open: If sequels/prequels are mentioned in the text of the response but not shown as separate Movie Cards — is that still a defect? Or is a textual mention sufficient? Awaiting product team.</div>
   </div>
 </div>
 
@@ -436,14 +442,15 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G10</span>
     <span class="defect-name">Irrelevant Responses to the Request</span>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The <strong>type</strong> of response doesn't match what the user asked for — the card content may be correct, but the format or intent is wrong.</p>
+    <p class="what-it-means">The response is completely off-target — wrong intent, doesn't address what the user asked at all.</p>
     <div class="rule-block purple">
       <div class="block-label purple">key distinction — G10 vs G14</div>
-      <strong>G10 (Irrelevant Responses):</strong> The response is completely off-target — wrong type, wrong intent, doesn't address what the user asked at all.<br><br>
-      <strong>G14 (Viewing Parameters Not Met):</strong> The response is correct and relevant, but something specific is missing or doesn't match — e.g., correct film but wrong subtitle language, correct film but wrong version, fewer results than requested.
+      <strong>G10 (Irrelevant Responses):</strong> The response completely misses the point — wrong type of content, wrong intent entirely. The model didn't understand or address what the user asked for.<br><br>
+      <strong>G14 (Viewing Parameters Not Met):</strong> The response is correct and on-point, but something specific is missing or doesn't match the user's request. Think of the coffee analogy in G14 — right coffee, wrong specs.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
@@ -496,7 +503,7 @@
     <p class="what-it-means">In a <strong>multi-turn conversation</strong>: the user got a first set of recommendations, then asked for more. The new set must not repeat any title from the previous set.</p>
     <div class="rule-block purple">
       <div class="block-label purple">editor tip</div>
-      Check the conversation history first. If there's no prior turn with earlier recommendations, this defect is not applicable.
+      Check the previous dialogue first. If there's no prior turn with earlier recommendations, this defect is not applicable.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
@@ -571,7 +578,7 @@
     <p class="what-it-means">The task has a multi-turn conversation, but the model ignores or loses track of what was said earlier.</p>
     <div class="rule-block purple">
       <div class="block-label purple">editor tip</div>
-      Check if there's a conversation history above the current query. If the model's response is inconsistent with earlier context — or starts fresh as if no prior turns exist — mark this defect.
+      Check if there's a previous dialogue above the current query. If the model's response is inconsistent with earlier context — or starts fresh as if no prior turns exist — mark this defect.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
@@ -774,16 +781,16 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E9</span>
     <span class="defect-name">No Subtitle</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">Some films have an official subtitle as part of their full title (e.g., <em>Avengers: Infinity War</em> — "Infinity War" is the subtitle). This is <strong>not</strong> about caption subtitles. Mark this if the film has an official subtitle but the card doesn't show it.</p>
+    <p class="what-it-means">"Subtitle" here refers to <strong>language subtitles</strong> (e.g., English subtitles, Turkish subtitles) — not the film's title subtitle. Mark this when the user has requested subtitles but the card or player shows no subtitle availability.</p>
     <div class="rule-block purple">
       <div class="block-label purple">editor tip</div>
-      Check the film's full official title. "Avengers" without "Infinity War" = missing subtitle. "Inception" has no subtitle — defect not applicable.
+      This is relevant when the user has specifically requested subtitles in their query (e.g., "English subtitle", "Turkish alt yazı"). Check whether the player or streaming links indicate subtitle availability.
     </div>
-    <div class="karina-box">Karina: only mark if the film has an official subtitle that's missing from the card. If the film simply has no subtitle, this defect does not apply.</div>
+    <div class="karina-box">Karina: only mark if the film has subtitles that are missing from the card. If subtitles simply don't exist for this title, this defect does not apply.</div>
   </div>
 </div>
 
@@ -791,10 +798,11 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E10</span>
     <span class="defect-name">Subtitle Mismatch</span>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The film has an official subtitle and one is shown in the card — but it's the wrong subtitle.</p>
+    <p class="what-it-means">The user requested a specific subtitle language, a subtitle is shown — but it's the wrong language. For example, user asked for English subtitles but only Turkish subtitles are available in the links.</p>
   </div>
 </div>
 
@@ -828,14 +836,16 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E13</span>
     <span class="defect-name">No Genre</span>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
     <p class="what-it-means">No genre is displayed in the card.</p>
     <div class="rule-block purple">
       <div class="block-label purple">where to find it</div>
-      Same metadata line: <em>2016 · Adventure · 6+</em>. Genre labels may appear in Turkish — this is not a language defect.
+      Same metadata line: <em>2016 · Adventure · 6+</em>. The middle item(s) are the genre(s).
     </div>
+    <div class="escalate-box">Q19 still open: Genre labels may appear in Turkish even when the query is in another language. Whether this counts as a Language Issues defect is awaiting product team clarification.</div>
   </div>
 </div>
 
@@ -1024,6 +1034,52 @@
       • User requests a specific number of films (e.g., "give me 10 movies") but the response returns fewer than requested.
     </div>
     <div class="karina-box">Karina: if the user specifies a platform by name but the model gives links to other valid platforms → mark as "Other." If the user asks for 10 movies but only 8 are returned → also mark as "Other" for now.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FACT-CHECK REFERENCE ═══════════════════ -->
+<div class="section-header">
+  <span class="section-pill pill-other">Quick Reference · What to Fact-Check</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="rule-block green" style="margin-bottom:16px">
+  <div class="block-label green">general principle</div>
+  Only fact-check when the Wiki explicitly requires it or when something is obviously wrong. Don't fact-check elements that are handled by a separate team (e.g., review scores).
+</div>
+
+<div class="defect-card" id="fc">
+  <div class="defect-header" onclick="toggle(this)">
+    <span class="defect-number">FC</span>
+    <span class="defect-name">Elements That Require Fact-Checking</span>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="defect-body">
+
+    <div class="rule-block">
+      <div class="block-label red">✓ fact-check required</div>
+      <strong>Age Rating (E16)</strong> — Check the Turkish age rating specifically. Use a Turkish film database or the film's Turkish platform listing (e.g., Netflix TR, BluTV).<br><br>
+      <strong>Loss of Versions (G5)</strong> — Quick Wikipedia search to confirm whether other well-known versions of the film exist.<br><br>
+      <strong>Player/Links (E21)</strong> — Click the link or player to verify it actually works and is not broken.<br><br>
+      <strong>Wrong Date (E12)</strong> — Quick check if you suspect the year is wrong.<br><br>
+      <strong>Duration Mismatch (E20)</strong> — Quick check if you suspect the runtime is obviously wrong. (Full fact-check requirement pending product team — see E20.)
+    </div>
+
+    <div class="rule-block green">
+      <div class="block-label green">✗ do not fact-check</div>
+      <strong>Review Score (E17)</strong> — Handled by a separate team. Only check presence/absence.
+    </div>
+
+    <div class="rule-block warn">
+      <div class="block-label warn">⚠ pending clarification</div>
+      <strong>Genre (E13/E14)</strong> — Whether editors need to fact-check genre accuracy is awaiting product team clarification.<br><br>
+      <strong>Pictures (E5/E6)</strong> — Whether editors need to verify image accuracy beyond visual matching is awaiting product team clarification.<br><br>
+      <strong>Loss of Sequels/Prequels (G4)</strong> — Whether editors need to research exhaustively (beyond general knowledge) is awaiting product team clarification.<br><br>
+      <strong>Subtitle availability (E9)</strong> — Whether editors need to externally verify subtitle availability is awaiting product team (linked to Q14).<br><br>
+      <strong>Duration for series (E19)</strong> — Whether editors need to fact-check season/episode count is awaiting product team (linked to Q21).
+    </div>
+
   </div>
 </div>
 
