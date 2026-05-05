@@ -103,7 +103,7 @@
 <header>
   <div class="header-label">Scenario-based SbS · Movies &amp; Shows</div>
   <h1>Defect Reference Guide</h1>
-  <div class="header-meta">Wiki last updated 30 April 2026 17:58 · Github last updated 4 May 2026 - 13:30 · EN</div>
+  <div class="header-meta">Wiki last updated 30 April 2026 17:58 · Github last updated 5 May 2026 08:10 · EN</div>
 </header>
 
 <div class="legend">
@@ -216,7 +216,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G2</span>
     <span class="defect-name">Empty Answer</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -225,18 +225,21 @@
       <div class="block-label red">when to mark</div>
       Request is Information, Watch, or Factual → a card is required → response has only text, no card → mark this defect.
     </div>
+    <div class="rule-block warn">
+      <div class="block-label warn">do element defects still apply?</div>
+      Yes — if there is something to mark in General defects, mark it. Karina: "We'd like to analyse the responses according to general defects, if there is any." So even when "Empty Answer" is marked, continue evaluating the response for other applicable General defects. Element defects (No Pictures, No Genre, etc.) only apply if a card is partially present.
+    </div>
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
-        Query: "Inception" → Response: a plain paragraph about the film. No card.<br><br>
-        Mark: <strong>Empty Answer only.</strong> Do not also mark No Pictures, No Genre, etc.
+        Query: "Inception" → Response: a plain paragraph. No card.<br><br>
+        Still check: are there other General defects applicable (e.g., Language Issues, Legality of Content)? Mark those too if present.
       </div>
       <div class="ex-box good">
         <div class="ex-label good">✓ No defect</div>
-        Query: "Inception" → Response includes a proper Movie Card. Evaluate its individual elements normally.
+        Query: "Inception" → Response includes a proper Movie Card. Evaluate its elements normally.
       </div>
     </div>
-    <div class="escalate-box">Q13 still open: When "Empty Answer" is marked, should editors also mark individual element defects (No Pictures, No Genre, No Review Score, etc.)? Or does "Empty Answer" cover all missing elements and element defects should be skipped? Awaiting product team.</div>
   </div>
 </div>
 
@@ -461,17 +464,25 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G11</span>
     <span class="defect-name">Movies 18+</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">This defect is specifically about <strong>pornographic content</strong> — NOT about any film that happens to be rated 18+. Many legitimate films are 18+ and we respond to those normally.</p>
+    <p class="what-it-means">This defect covers two distinct cases related to adult content. It is <strong>not</strong> about any film that simply happens to be rated 18+.</p>
+    <div class="rule-block">
+      <div class="block-label red">case (a) — model refuses a legitimate adult film query</div>
+      If a user asks about a regular adult-rated film available on major streaming platforms, and the model returns nothing (empty response, refusal, or irrelevant deflection) → <strong>mark this defect.</strong> Legitimate adult films should be responded to normally.
+    </div>
+    <div class="rule-block">
+      <div class="block-label red">case (b) — model returns actual pornographic content</div>
+      If the model returns pornographic content → <strong>mark this defect.</strong>
+    </div>
     <div class="rule-block warn">
       <div class="block-label warn">important distinction</div>
-      A film rated 18+ on Netflix, Amazon, etc. = legitimate. Respond normally, no defect.<br><br>
-      This defect is only triggered by issues specifically related to pornographic content.
+      A film rated 18+ on Netflix, Amazon, etc. = legitimate. Respond normally.<br>
+      Pornography = not a legitimate streaming platform film. Always a defect.
     </div>
-    <div class="escalate-box">Q6 still open: Should we mark if (a) model refuses a legitimate adult-rated film, or (b) actual pornographic content appears — or both? Awaiting product team for a clear decision tree.</div>
+    <div class="karina-box">Karina: We don't show pornography → always mark (b). For (a): if the model shows nothing to a regular adult-film query, that's also a defect. A film may sometimes seem like pornography but is a regular movie available on platforms — respond to those normally.</div>
   </div>
 </div>
 
@@ -526,23 +537,27 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G14</span>
     <span class="defect-name">Requested Viewing Parameters Not Met</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The user asks to watch something with <strong>specific attributes</strong> (a particular dub language, subtitles, or version). The model finds the correct film but fails to provide the requested version or language.</p>
+    <p class="what-it-means">The user asks to watch something with <strong>specific viewing attributes</strong>. The model finds the correct film but fails to provide the requested version or language.</p>
     <div class="rule-block purple">
-      <div class="block-label purple">key distinction — G14 vs G10</div>
-      <strong>G14 (Viewing Parameters Not Met):</strong> The response is correct and relevant, but something specific is missing or doesn't match — e.g., correct film but wrong subtitle language, correct film but wrong version, fewer results than requested.<br><br>
-      <strong>G10 (Irrelevant Responses):</strong> The response is completely off-target — wrong type, wrong intent, doesn't address what the user asked at all.
+      <div class="block-label purple">what are "viewing attributes"?</div>
+      Think of it like ordering coffee: the film = the coffee (Americano). Viewing attributes = the specifications (iced/hot, less sugar, oat milk). If the wrong coffee comes → G10. If the coffee is right but served hot when you asked for iced → G14.<br><br>
+      Viewing attributes include: dubbing language, subtitle language, specific version (director's cut, extended edition), named platform (e.g., "Avatar 2 Netflix").
     </div>
     <div class="rule-block">
       <div class="block-label red">examples</div>
+      User asks for Turkish dub → only original-language version linked<br>
       User asks for English subtitles → links provided but none have English subs<br>
-      User asks for director's cut → only theatrical version linked<br>
-      User asks for Turkish dub → only original-language version available
+      User asks for director's cut → only theatrical version linked
     </div>
-    <div class="escalate-box">Q1 still open: (a) If the requested parameter (e.g., Turkish dub) provably doesn't exist anywhere online, should we still mark this defect — or is an honest model response stating unavailability acceptable? (b) Does the editor need to do external research to verify whether the requested parameter (dub, subtitle, version) actually exists online before deciding? Awaiting product team.</div>
+    <div class="rule-block warn">
+      <div class="block-label warn">service type (e.g. "free to watch", "without subscription")</div>
+      Karina: use common sense for these cases for now. Further discussion pending.
+    </div>
+    <div class="escalate-box">Q14 still open: (a) If the requested parameter provably doesn't exist anywhere online, should we still mark this defect — or is an honest model response stating unavailability acceptable? (b) Does the editor need to do external research to verify whether the requested parameter actually exists online before deciding? Awaiting product team.</div>
   </div>
 </div>
 
@@ -575,30 +590,35 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G16</span>
     <span class="defect-name">Language Issues</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
     <p class="what-it-means">The model's written response is in the wrong language or mixes languages. The <strong>model-generated text</strong> (introduction, description) must match the language of the user's query.</p>
     <div class="rule-block warn">
-      <div class="block-label warn">metadata is excluded from this rule</div>
-      Year, genre labels, age rating, and other database metadata may appear in Turkish — this is NOT a language defect. Only evaluate the text the model itself wrote.
+      <div class="block-label warn">ambiguous query language → always prioritise Turkish</div>
+      If the query is a word that exists in both Turkish and English (e.g., "film"), or the language is otherwise ambiguous — the expected response language is <strong>Turkish</strong>. If a model responds in English for such a query, mark Language Issues.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
         Query in English → Introduction and description are mixed English/Turkish.
+        <hr class="divider">
+        Query: "film" (ambiguous) → Model responds in English. Turkish was expected.
       </div>
       <div class="ex-box good">
         <div class="ex-label good">✓ No defect</div>
-        Query: "spy family bond" (English) → Description in English, but year/genre shows "2022 · çizgi filmi, aksiyon" in Turkish. Metadata language is fine.
+        Query: "spy family bond" (English) → Description in English, "2022 · çizgi filmi, aksiyon" in Turkish. Fine.
+        <hr class="divider">
+        Query: "film" (ambiguous) → Model responds in Turkish. Correct.
       </div>
     </div>
     <div class="rule-block purple">
-      <div class="block-label purple">editor tip — what counts as "model-written text"</div>
-      Metadata fields pulled from the database (year, genre, age rating) may appear in Turkish even when the query is in another language. This is the same principle as Turkish prices and labels in the E-com task. Only the text the model itself generates (introduction, description) should be evaluated for language consistency.
+      <div class="block-label purple">editor tip — what counts as model-written text</div>
+      Metadata fields (year, genre, age rating) pulled from the database may appear in Turkish even when the query is in another language. This follows the same principle as Turkish labels in the E-com task. Only the text the model itself generates (introduction, description) is evaluated for language consistency.
     </div>
-    <div class="escalate-box">Q (metadata language) still open: Is it acceptable for card metadata fields (year, genre, age rating label) to appear in Turkish when the user's query is in another language? And for the ambiguous query case: if the query is only a single word that exists in both Turkish and English — e.g., "film" — and one model responds in Turkish while the other responds in English, which language should be prioritised? Awaiting product team.</div>
+    <div class="karina-box">Karina: if the query is ambiguous in terms of language, it should always be Turkish.</div>
+    <div class="escalate-box">Q19 still open: Is it formally acceptable for card metadata fields (year, genre, age rating label) to appear in Turkish when the user's query is in another language? Awaiting product team.</div>
   </div>
 </div>
 
@@ -610,22 +630,26 @@
 
 <div class="rule-block green" style="margin-bottom:20px">
   <div class="block-label green">how element defects work</div>
-  These defects apply to individual elements within each Movie Card. Check every card in the response — if one card has a missing element, mark it even if the other cards are fine.<br><br>
-  <strong>Note:</strong> Whether element defects should also be marked when "Empty Answer" (G2) applies is currently awaiting clarification from the product team — see Q13.
+  These defects apply to individual elements within each Movie Card. Check every card in the response — if one card has a missing element, mark it even if the other cards are fine.
 </div>
 
 <div class="defect-card" id="e1">
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E1</span>
     <span class="defect-name">No Introduction</span>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
     <p class="what-it-means">Whenever the response contains one or more Movie Cards, there must be an introduction — a short text written <strong>before</strong> the card(s). Mark this if the response jumps straight to a card with nothing written before it.</p>
     <div class="rule-block purple">
-      <div class="block-label purple">editor tip</div>
-      Even a one-sentence intro counts. Only mark when there is literally nothing written before the first card.
+      <div class="block-label purple">two types of introduction — both count</div>
+      In a Selection response, there can be two levels of introduction:<br><br>
+      1. <strong>General selection intro</strong> — appears before all cards. Explains how the model understood the query and why these films were chosen.<br>
+      2. <strong>Per-movie intro</strong> — appears before each individual card. A short annotation about that specific film.<br><br>
+      Both are treated as "introduction" and both are subject to the 3-line max rule (E3). Mark "No Introduction" if either is missing where expected.
     </div>
+    <div class="karina-box">Karina: "The first part is the general introduction about the selection. Then we see the introduction for each movie in the selection. Both are introduction so we treat both as introduction which can't be longer than 3 lines."</div>
   </div>
 </div>
 
@@ -654,14 +678,16 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E3</span>
     <span class="defect-name">Introduction Length</span>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The introduction is too long — more than <strong>3 lines</strong> in Touch mode (mobile view).</p>
+    <p class="what-it-means">Any introduction — whether the general selection intro or the per-movie intro — must not exceed <strong>3 lines</strong> in Touch mode (mobile view). Mark this if either exceeds the limit.</p>
     <div class="rule-block purple">
       <div class="block-label purple">editor tip</div>
-      Evaluate in Touch/mobile view. If the intro takes more than 3 lines before the first card → mark this defect.
+      Evaluate each introduction separately in Touch/mobile view. The 3-line limit applies to both: the general intro at the top AND each individual per-movie intro before each card.
     </div>
+    <div class="karina-box">Karina: both the general selection introduction and the per-movie introduction are subject to the same 3-line maximum rule.</div>
   </div>
 </div>
 
@@ -669,22 +695,30 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E4</span>
     <span class="defect-name">Introduction Issues</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The introduction is present, correctly placed, and the right length — but the <strong>quality</strong> is poor. It doesn't confirm to the user that the response is useful or worth reading.</p>
+    <p class="what-it-means">The introduction is present, correctly placed, and the right length — but the <strong>quality</strong> is poor. It must contain substantive context justifying why the film(s) suit the user's request, or serve as a short annotation for the movie.</p>
+    <div class="rule-block">
+      <div class="block-label red">what counts as substantive</div>
+      The intro should briefly explain: how the model understood the query, what the films have in common, or why they are relevant to the user. For Selections, "Here are some [genre] films:" is acceptable as a general opener — but the per-movie intros should add actual context about each film.
+    </div>
     <div class="example-row">
       <div class="ex-box bad">
-        <div class="ex-label bad">✗ Likely defect</div>
+        <div class="ex-label bad">✗ Mark defect</div>
         "Here are some movies." (no context, no connection to what was asked)
+        <hr class="divider">
+        "Here are my recommendations." (generic, adds nothing)
       </div>
       <div class="ex-box good">
-        <div class="ex-label good">✓ Likely fine</div>
-        "Here are some movies and TV series suitable for watching with a 7-year-old:" (directly addresses the request)
+        <div class="ex-label good">✓ No defect</div>
+        Query: "action film recommendations" → "If you're looking for action, here are options that are both fast-paced and diverse. The following combine action tempo with different genres."
+        <hr class="divider">
+        Per-movie intro: "İyimserlik ve hayatın tadı — Hayatın küçük anlarını büyüten, 'her şey bir yerde bir anlam bulur' hissi veren bir yolculuk." (short annotation describing the film's feeling)
       </div>
     </div>
-    <div class="escalate-box">Q7 still open: No formal quality bar has been set. What exactly makes an introduction "confirm the response is useful and worth reading"? Awaiting product team.</div>
+    <div class="karina-box">Karina: there should be substantive context justifying that the movie/show suits the user or serves as a short annotation. For a selection, "here are some [x] films:" as a general opener is OK. Per-movie intros should add real context.</div>
   </div>
 </div>
 
@@ -835,12 +869,21 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E16</span>
     <span class="defect-name">Age Rating Issues</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The age rating shown is incorrect — either clearly wrong for the film's content, or using the wrong country's rating standard.</p>
-    <div class="escalate-box">Q5 still open: When Turkey's rating differs from the film's origin country rating, which one takes priority? Concrete example: <em>Deadpool</em> (2016) is rated R (≈17+) in the USA but 15+ in Turkey. If the card shows "15+", is that correct or a defect? Should editors judge by the Turkish rating (what the local user encounters) or the US origin rating? And does this mean editors need to fact-check age ratings against an external source? Awaiting product team.</div>
+    <p class="what-it-means">The age rating shown is incorrect based on the <strong>Turkish rating standard</strong>.</p>
+    <div class="rule-block">
+      <div class="block-label red">benchmark = Turkish rating</div>
+      Always judge age rating correctness by the Turkish rating — not the origin country's rating. This task serves Turkish market users, so the Turkish classification is what matters.<br><br>
+      Example: <em>Deadpool</em> (2016) is R (≈17+) in the USA but <strong>15+</strong> in Turkey. If the card shows "15+" → correct, no defect. If it shows "17+" or "R" → mark Age Rating Issues.
+    </div>
+    <div class="rule-block warn">
+      <div class="block-label warn">fact-check required</div>
+      A quick fact-check is needed to verify the Turkish age rating. Check a Turkish film database or the film's Turkish platform listing.
+    </div>
+    <div class="karina-box">Karina: editors should judge based on the Turkish rating. A quick fact check is needed.</div>
   </div>
 </div>
 
@@ -848,11 +891,11 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E17</span>
     <span class="defect-name">No Review Score</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">No score is shown in the card (e.g., IMDb 8.0). Your only job here is to check whether the score element is <strong>present or absent</strong>.</p>
+    <p class="what-it-means">No score is shown in the card (e.g., IMDb 8.0). Mark this for <strong>both movies and TV shows/series</strong> — the requirement applies to all card types.</p>
     <div class="rule-block purple">
       <div class="block-label purple">where to find it</div>
       Below the title — a yellow IMDb badge with a number, e.g., <em>8,0</em>.
@@ -861,7 +904,11 @@
       <div class="block-label warn">do not fact-check the score</div>
       Do NOT verify whether the score is accurate. Fact-checking is handled by a separate team. If a score is present, that's sufficient.
     </div>
-    <div class="karina-box">Karina: "Review Score Invalid" has been removed from the Wiki entirely. Editors only mark "No Review Score" when the score element is completely absent.</div>
+    <div class="rule-block warn">
+      <div class="block-label warn">applies to series too</div>
+      Even if most series cards in the task don't display a review score, still mark this defect when absent. The Wiki examples are illustrative only — not perfect samples.
+    </div>
+    <div class="karina-box">Karina: "For now, let's mark it. These examples are used only to show which elements are typical for the responses, not to show any perfect samples in all terms." Also: "Review Score Invalid" has been removed from the Wiki — editors only check presence or absence, not accuracy.</div>
   </div>
 </div>
 
@@ -962,6 +1009,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">O1</span>
     <span class="defect-name">Other</span>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -970,7 +1018,12 @@
       <div class="block-label warn">use sparingly</div>
       Don't use "Other" for minor issues or personal preferences. Only mark when the flaw is substantial and clearly impacts usefulness.
     </div>
-    <div class="karina-box">Karina: if the user specifies a platform by name (e.g., "Avatar 2 Netflix") but the model gives links to other valid platforms → mark as "Other."</div>
+    <div class="rule-block purple">
+      <div class="block-label purple">known cases that go here</div>
+      • User specifies a platform by name (e.g., "Avatar 2 Netflix") but model links to other valid platforms instead.<br>
+      • User requests a specific number of films (e.g., "give me 10 movies") but the response returns fewer than requested.
+    </div>
+    <div class="karina-box">Karina: if the user specifies a platform by name but the model gives links to other valid platforms → mark as "Other." If the user asks for 10 movies but only 8 are returned → also mark as "Other" for now.</div>
   </div>
 </div>
 
