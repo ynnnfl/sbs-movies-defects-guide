@@ -59,6 +59,7 @@
   .tag-escalate { background: #c0392b22; color: #e74c3c; border: 1px solid #c0392b55; }
   .tag-updated  { background: #2ecc7122; color: #2ecc71; border: 1px solid #2ecc7155; }
   .tag-karina   { background: #f0a04b22; color: #f0a04b; border: 1px solid #f0a04b55; }
+  .tag-factcheck { background: #1a6fa822; color: #5bc0eb; border: 1px solid #1a6fa855; }
   .chevron { color: var(--muted); font-size: 12px; transition: transform 0.2s; margin-left: 6px; flex-shrink: 0; }
   .defect-card.open .chevron { transform: rotate(180deg); }
   .defect-body { display: none; padding: 18px 20px 20px; border-top: 1px solid var(--border); }
@@ -103,10 +104,11 @@
 <header>
   <div class="header-label">Scenario-based SbS · Movies &amp; Shows</div>
   <h1>Defect Reference Guide</h1>
-  <div class="header-meta">Wiki last updated 30 April 2026 17:58 · Github last updated 5 May 2026 08:10 · EN</div>
+  <div class="header-meta">Wiki last updated 30 April 2026 17:58 · Github last updated 6 May 2026 08:00 · EN</div>
 </header>
 
 <div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#5bc0eb"></div> Requires fact-checking</div>
   <div class="legend-item"><div class="legend-dot" style="background:#e74c3c"></div> Needs clarification from product team</div>
   <div class="legend-item"><div class="legend-dot" style="background:#f0a04b"></div> Clarified by Karina</div>
   <div class="legend-item"><div class="legend-dot" style="background:#2ecc71"></div> Updated in 30 April Wiki</div>
@@ -226,26 +228,31 @@
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">The response contains <strong>only text</strong> but <strong>no Movie Card</strong>, even though the request type requires one.</p>
+    <p class="what-it-means">The response contains <strong>only text</strong> or <strong>only video players</strong> but <strong>no Movie Card</strong>, even though the request type requires one.</p>
     <div class="rule-block">
       <div class="block-label red">when to mark</div>
-      Request is Information, Watch, or Factual → a card is required → response has only text, no card → mark this defect.
+      Any of the following = mark Empty Answer:<br><br>
+      • Response has only text, no card (any request type)<br>
+      • Response shows only video players with no actual Movie Card (e.g., a list of YouTube episode links with no card structure)<br>
+      • Factual request returns only text with no card — even though cards are optional for Factual, if a card is entirely absent, mark this defect
     </div>
     <div class="rule-block warn">
       <div class="block-label warn">do element defects still apply?</div>
-      Yes — if there is something to mark in General defects, mark it. Karina: "We'd like to analyse the responses according to general defects, if there is any." So even when "Empty Answer" is marked, continue evaluating the response for other applicable General defects. Element defects (No Pictures, No Genre, etc.) only apply if a card is partially present.
+      Yes — if there is something to mark in General defects, mark it. Even when "Empty Answer" is marked, continue evaluating the response for other applicable General defects. Element defects (No Pictures, No Genre, etc.) only apply if a card is partially present.
     </div>
     <div class="example-row">
       <div class="ex-box bad">
         <div class="ex-label bad">✗ Mark defect</div>
-        Query: "Inception" → Response: a plain paragraph. No card.<br><br>
-        Still check: are there other General defects applicable (e.g., Language Issues, Legality of Content)? Mark those too if present.
+        Query: "Çukur 1. sezon" → Response: only a list of video players (episode links), no Movie Card shown.
+        <hr class="divider">
+        Query: "Who directed Inception?" (factual) → Response: only a text answer, no card.
       </div>
       <div class="ex-box good">
         <div class="ex-label good">✓ No defect</div>
         Query: "Inception" → Response includes a proper Movie Card. Evaluate its elements normally.
       </div>
     </div>
+    <div class="karina-box">Karina (via Elif): Q1 (video-only response) and Q2 (factual request, text-only) → both confirmed as Empty Answer defect.</div>
   </div>
 </div>
 
@@ -274,7 +281,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G4</span>
     <span class="defect-name">Loss of Sequels/Prequels</span>
-    <div class="defect-tags"><span class="tag tag-updated">UPDATED 30 APR</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -305,7 +312,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G5</span>
     <span class="defect-name">The Loss of Versions of Identical Films</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -471,17 +478,13 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">G11</span>
     <span class="defect-name">Movies 18+</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-updated">6 MAY</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
-    <p class="what-it-means">This defect covers two distinct cases related to adult content. It is <strong>not</strong> about any film that simply happens to be rated 18+.</p>
+    <p class="what-it-means">This defect covers cases related to adult/pornographic content. It is <strong>not</strong> about any film that simply happens to be rated 18+.</p>
     <div class="rule-block">
-      <div class="block-label red">case (a) — model refuses a legitimate adult film query</div>
-      If a user asks about a regular adult-rated film available on major streaming platforms, and the model returns nothing (empty response, refusal, or irrelevant deflection) → <strong>mark this defect.</strong> Legitimate adult films should be responded to normally.
-    </div>
-    <div class="rule-block">
-      <div class="block-label red">case (b) — model returns actual pornographic content</div>
+      <div class="block-label red">case (b) — model returns actual pornographic content ✓ confirmed</div>
       If the model returns pornographic content → <strong>mark this defect.</strong>
     </div>
     <div class="rule-block warn">
@@ -489,7 +492,12 @@
       A film rated 18+ on Netflix, Amazon, etc. = legitimate. Respond normally.<br>
       Pornography = not a legitimate streaming platform film. Always a defect.
     </div>
-    <div class="karina-box">Karina: We don't show pornography → always mark (b). For (a): if the model shows nothing to a regular adult-film query, that's also a defect. A film may sometimes seem like pornography but is a regular movie available on platforms — respond to those normally.</div>
+    <div class="rule-block">
+      <div class="block-label red">case (a) — model refuses a legitimate adult film query</div>
+      If a user asks about a regular adult-rated film available on major streaming platforms, and the model returns nothing (empty response, refusal, or irrelevant deflection) — our current guidance is to mark this defect. However, this case is still being confirmed by the product team.
+    </div>
+    <div class="karina-box">Karina (previous): We don't show pornography → always mark (b). For (a): if the model shows nothing to a regular adult-film query, that's also a defect.<br><br>Karina (via Elif, 6 May): Case (a) — "At this stage, yes. I've included this question in my list, waiting for an answer." Case (b) — confirmed.</div>
+    <div class="escalate-box">Case (a) still being confirmed with product team. For now, mark it — but this may be updated.</div>
   </div>
 </div>
 
@@ -744,6 +752,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E6</span>
     <span class="defect-name">Pictures Mismatch</span>
+    <div class="defect-tags"><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -781,7 +790,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E9</span>
     <span class="defect-name">No Subtitle</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -798,7 +807,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E10</span>
     <span class="defect-name">Subtitle Mismatch</span>
-    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <div class="defect-tags"><span class="tag tag-updated">UPDATED 5 MAY</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -825,6 +834,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E12</span>
     <span class="defect-name">Wrong Date</span>
+    <div class="defect-tags"><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -853,6 +863,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E14</span>
     <span class="defect-name">Genre Mismatch</span>
+    <div class="defect-tags"><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -879,7 +890,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E16</span>
     <span class="defect-name">Age Rating Issues</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-updated">UPDATED 5 MAY</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -941,7 +952,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E19</span>
     <span class="defect-name">No Duration</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -975,7 +986,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E20</span>
     <span class="defect-name">Duration Mismatch</span>
-    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -988,7 +999,7 @@
   <div class="defect-header" onclick="toggle(this)">
     <span class="defect-number">E21</span>
     <span class="defect-name">No Player or Links Available</span>
-    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span></div>
+    <div class="defect-tags"><span class="tag tag-karina">KARINA CLARIFIED</span><span class="tag tag-escalate">NEEDS CLARIFICATION</span><span class="tag tag-factcheck">FACT-CHECK</span></div>
     <span class="chevron">▼</span>
   </div>
   <div class="defect-body">
@@ -1059,25 +1070,21 @@
 
     <div class="rule-block warn">
       <div class="block-label warn">✓ fact-check required</div>
-      <strong>Age Rating (E16)</strong> — Check the Turkish age rating specifically. Use a Turkish film database or the film's Turkish platform listing (e.g., Netflix TR, BluTV).<br><br>
+      <strong>Age Rating Issues (E16)</strong> — Verify the Turkish age rating. Check a Turkish film database or the film's Turkish platform listing (e.g., Netflix TR, BluTV).<br><br>
       <strong>Loss of Versions (G5)</strong> — Quick Wikipedia search to confirm whether other well-known versions of the film exist.<br><br>
+      <strong>Loss of Sequels/Prequels (G4)</strong> — Verify whether the film has sequels or prequels using Wikipedia or IMDb.<br><br>
+      <strong>Genre Mismatch (E14)</strong> — Quick check if the genre listed is clearly wrong for the film.<br><br>
+      <strong>Pictures Mismatch (E6)</strong> — Verify the image visually matches the film (poster, recognisable characters/scenes).<br><br>
       <strong>Player/Links (E21)</strong> — Click the link or player to verify it actually works and is not broken.<br><br>
-      <strong>Wrong Date (E12)</strong> — Quick check if you suspect the year is wrong.<br><br>
-      <strong>Duration Mismatch (E20)</strong> — Quick check if you suspect the runtime is obviously wrong. (Full fact-check requirement pending product team — see E20.)
+      <strong>Wrong Date (E12)</strong> — Quick check if you suspect the release year is wrong.<br><br>
+      <strong>Duration Mismatch (E20)</strong> — Quick check if you suspect the runtime is obviously wrong.<br><br>
+      <strong>Subtitle availability (E9)</strong> — Check whether the player or streaming links indicate subtitle availability for the language requested.<br><br>
+      <strong>Duration/Season count for series (E19)</strong> — Verify season/episode count if duration is absent on a series card.
     </div>
 
     <div class="rule-block green">
       <div class="block-label green">✗ do not fact-check</div>
       <strong>Review Score (E17)</strong> — Handled by a separate team. Only check presence/absence.
-    </div>
-
-    <div class="rule-block" style="border-color: var(--escalate);">
-      <div class="block-label" style="color: #e74c3c;">⚠ pending clarification — do not fact-check until confirmed</div>
-      <strong>Genre (E13/E14)</strong> — Whether editors need to fact-check genre accuracy is awaiting product team clarification.<br><br>
-      <strong>Pictures (E5/E6)</strong> — Whether editors need to verify image accuracy beyond visual matching is awaiting product team clarification.<br><br>
-      <strong>Loss of Sequels/Prequels (G4)</strong> — Whether editors need to research exhaustively (beyond general knowledge) is awaiting product team clarification.<br><br>
-      <strong>Subtitle availability (E9)</strong> — Whether editors need to externally verify subtitle availability is awaiting product team (linked to Q14).<br><br>
-      <strong>Duration for series (E19)</strong> — Whether editors need to fact-check season/episode count is awaiting product team (linked to Q21).
     </div>
 
   </div>
